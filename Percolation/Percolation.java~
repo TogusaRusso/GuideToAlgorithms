@@ -1,0 +1,93 @@
+public class Percolation {
+  private int[][] grid;
+  private int size;
+  private WeightedQuickUnionUF union;
+  
+   public Percolation(int N)               // create N-by-N grid, with all sites blocked
+   {
+     if (N <= 0)
+       throw new java.lang.IllegalArgumentException();
+     size = N;
+     grid = new int[size][size];
+     union = new WeightedQuickUnionUF(size * size + 2);
+     //nobackwash = new WeightedQuickUnionUF(size * size + 2);
+     
+   }
+   private int toUnion(int i, int j)
+   {
+     return (i - 1) * size + j + 1;
+   }
+   private void check(int i, int j)
+   {
+     if (i < 1 || i > size || j < 1 || j > size)
+       throw new java.lang.IndexOutOfBoundsException();
+   }
+   public void open(int i, int j)          // open site (row i, column j) if it is not open already
+   {
+     check(i, j);
+     if (!isOpen(i, j))
+     {
+       grid[i - 1][j - 1] = 1;
+       // check up
+       if (i > 1)
+       {
+         if (isOpen(i-1, j))
+         {
+           union.union(toUnion(i - 1, j), toUnion(i, j));
+           
+         }
+         
+       }
+       else 
+         union.union(0, toUnion(i, j));
+       // check down
+       if (i < size)
+       {
+         if (isOpen(i + 1, j))
+           union.union(toUnion(i + 1, j), toUnion(i, j));
+       }
+       else 
+         union.union(1, toUnion(i, j)); 
+       // check left
+       if (j > 1)
+         if (isOpen(i, j - 1))
+           union.union(toUnion(i, j - 1), toUnion(i, j));
+       // check right
+       if (j < size)
+         if (isOpen(i, j + 1))
+           union.union(toUnion(i, j + 1), toUnion(i, j));
+     }
+   }
+   public boolean isOpen(int i, int j)     // is site (row i, column j) open?
+   {
+     check(i, j);
+     return grid[i - 1][j - 1] == 1;
+   }
+   public boolean isFull(int i, int j)     // is site (row i, column j) full?
+   {
+     check(i, j);
+     return union.connected(0, toUnion(i, j));
+   }
+
+   public boolean percolates()             // does the system percolate?
+   {
+     return union.connected(0, 1);
+   }
+
+   public static void main(String[] args)   // test client (optional)
+   {
+        int N = StdIn.readInt();
+        Percolation gr = new Percolation(N);
+        while (!StdIn.isEmpty()) {
+            int i = StdIn.readInt();
+            int j = StdIn.readInt();
+            if (gr.isOpen(i, j)) continue;
+            gr.open(i, j);
+            StdOut.println(i + " " + j);
+        }
+        if (gr.percolates())
+          StdOut.println("It's percolates");
+        else
+          StdOut.println("It isn't percolates");
+   }
+}

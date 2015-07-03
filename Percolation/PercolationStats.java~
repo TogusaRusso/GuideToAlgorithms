@@ -1,0 +1,63 @@
+public class PercolationStats {
+   private int T, N;
+   private double[] x;
+   public PercolationStats(int NN, int TT)     // perform T independent experiments on an N-by-N grid
+   {
+     if (NN <= 0 || TT <= 0)
+       throw new java.lang.IllegalArgumentException();
+     T = TT;
+     N = NN;
+     x = new double[T];
+     for (int i = 0; i < T; i++)
+       x[i] = percolationExperiment();
+   }
+   private double percolationExperiment()
+   {
+     Percolation gr = new Percolation(N);
+     int count = 0;
+     int i, j;
+     while (!gr.percolates())
+     {
+       i = StdRandom.uniform(1, N + 1);
+       j = StdRandom.uniform(1, N + 1);
+       while (gr.isOpen(i, j))
+       {
+         i = StdRandom.uniform(1, N + 1);
+         j = StdRandom.uniform(1, N + 1);
+       }
+       gr.open(i, j);
+       count++;
+     }
+     return count / (double) (N * N);
+   }
+   public double mean()                      // sample mean of percolation threshold
+   {
+     return StdStats.mean(x);
+   }
+   public double stddev()                    // sample standard deviation of percolation threshold
+   {
+     return StdStats.stddev(x);
+   }
+   public double confidenceLo()              // low  endpoint of 95% confidence interval
+   {
+     return mean() - 1.96 * stddev() / Math.sqrt(T);
+   }
+   public double confidenceHi()              // high endpoint of 95% confidence interval
+   {
+     return mean() + 1.96 * stddev() / Math.sqrt(T);
+   }
+
+   public static void main(String[] args)    // test client (described below)
+   {
+     int N = Integer.parseInt(args[0]);
+     int T = Integer.parseInt(args[1]);
+     Stopwatch timer = new Stopwatch();
+     PercolationStats ps = new PercolationStats(N, T);
+     double elapsed = timer.elapsedTime();
+     StdOut.println("mean                    = " + ps.mean());
+     StdOut.println("stddev                  = " + ps.stddev());
+     StdOut.println("95% confidence interval = " + ps.confidenceLo()+", " + ps.confidenceHi());
+     StdOut.println("processing time         = " + elapsed);
+     
+   }
+}
