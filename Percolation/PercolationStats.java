@@ -18,13 +18,10 @@ public class PercolationStats {
      int i, j;
      while (!gr.percolates())
      {
-       i = StdRandom.uniform(1, N + 1);
-       j = StdRandom.uniform(1, N + 1);
-       while (gr.isOpen(i, j))
-       {
+       do {
          i = StdRandom.uniform(1, N + 1);
          j = StdRandom.uniform(1, N + 1);
-       }
+       } while (gr.isOpen(i, j));
        gr.open(i, j);
        count++;
      }
