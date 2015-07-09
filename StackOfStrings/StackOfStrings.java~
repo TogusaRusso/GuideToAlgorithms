@@ -1,0 +1,31 @@
+public class StackOfStrings() {
+  // create an empty stack
+  StackOfStrings() {
+  }
+  
+  // insert a new string onto stack
+  void push(String item) {
+  }
+  
+  // remove and return the string most recently added
+  String pop() {
+  }
+  
+  // is the stack emplty?
+  boolean isEmpty() {
+  }
+  
+  // number of strings on the stack
+  int size() {
+  }
+  
+  public static void main(String[] args) {
+    StackOfStrings stack = new StackOfStrings();
+    while (!StdIn.isEmpty()) {
+      String s = StdIn.readString();
+      if (s.equals("-"))
+        StdOut.print(stack.pop());
+      else
+        stack.push(s)
+    }
+}

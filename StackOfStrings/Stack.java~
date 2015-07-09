@@ -1,0 +1,50 @@
+public class Stack <Item> {
+  
+  // first node in list
+  private Node first = null;
+  private int size_counter = 0;
+  
+  // inner class for linked list creation
+  private class Node {
+    Item item;
+    Node next;
+  }
+  
+  // insert a new item onto stack
+  public void push(Item item) {
+    Node oldfirst = first;
+    first = new Node();
+    first.next = oldfirst;
+    first.item = item;
+    size_counter++;
+  }
+  
+  // remove and return the item most recently added
+  public Item pop() {
+    Item item = first.item;
+    first = first.next;
+    size_counter--;
+    return item;
+  }
+  
+  // is the stack emplty?
+  boolean isEmpty() {
+    return first == null;
+  }
+  
+  // number of items on the stack
+  int size() {
+    return size_counter;
+  }
+  
+  public static void main(String[] args) {
+    Stack<String> stack = new Stack<String>();
+    while (!StdIn.isEmpty()) {
+      String s = StdIn.readString();
+      if (s.equals("-"))
+        StdOut.print(stack.pop());
+      else
+        stack.push(s);
+    }
+  }
+}

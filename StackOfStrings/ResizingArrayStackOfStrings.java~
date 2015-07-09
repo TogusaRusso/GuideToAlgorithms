@@ -1,0 +1,51 @@
+public class ResizingArrayStackOfStrings {
+  private int N = 0;
+  private String[] s;
+  
+  public ResizingArrayStackOfStrings() {
+    s = new String[1];
+  }
+  
+  private void resize(capicity) {
+    String[] copy = new String[capicity];
+    for (int i = 0; i < N; i++)
+      copy[i] = s[i];
+    s = copy;
+  }
+      
+  
+  // insert a new string onto stack
+  void push(String item) {
+    if (N == s.length)
+      resize(2 * N);
+    s[N++] = item;
+  }
+  
+  // remove and return the string most recently added
+  String pop() {
+    String item = first.item;
+    first = first.next;
+    return item;
+  }
+  
+  // is the stack emplty?
+  boolean isEmpty() {
+    return N == 0;
+  }
+  
+  // number of strings on the stack
+  int size() {
+    return N;
+  }
+  
+  public static void main(String[] args) {
+    ResizingArrayStackOfStrings stack = new StackOfStrings();
+    while (!StdIn.isEmpty()) {
+      String s = StdIn.readString();
+      if (s.equals("-"))
+        StdOut.print(stack.pop());
+      else
+        stack.push(s);
+    }
+  }
+}
