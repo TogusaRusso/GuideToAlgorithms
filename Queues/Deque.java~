@@ -1,0 +1,73 @@
+public class Deque<Item> implements Iterable<Item> {
+  
+  // first and lasr node in list
+  private Node first = null;
+  private Node last = null;
+  private int size_counter = 0;
+  
+  // inner class for linked list creation
+  private class Node {
+    Item item;
+    Node next;
+    Node prev;
+  }
+  // construct an empty deque
+  public Deque() {
+  }
+  
+  // is the deque empty?
+  public boolean isEmpty() {
+    return size_counter == 0;
+  }
+  
+  // return the number of items on the deque
+  public int size() {
+    return size_counter;
+  }
+  
+  // add the item to the front
+  public void addFirst(Item item){
+    Node oldfirst = first;
+    first = new Node();
+    first.next = oldfirst;
+    first.item = item;
+    if (size_counter > 0)
+      oldfirst.prev = first;
+    size_counter++;
+  }
+  
+  // add the item to the end
+  public void addLast(Item item) {
+    Node oldlast = last;
+    last = new Node();
+    last.prev = oldlast;
+    last.item = item;
+    if (size_counter > 0)
+      oldlast.next = last;
+    size_counter++;
+  }
+  
+  // remove and return the item from the front
+  public Item removeFirst() {
+    Item item = first.item;
+    first = first.next;
+    first.prev = null;
+    size_counter--;
+    return item;
+  }
+
+  // remove and return the item from the end
+  public Item removeLast() {
+    Item item = last.item;
+    last = last.prev;
+    last.next = null;
+    size_counter--;
+    return item;
+  }
+ 
+  // return an iterator over items in order from front to end
+  public Iterator<Item> iterator() {
+    
+   public static void main(String[] args)   // unit testing
+}
+Corner cases. 
