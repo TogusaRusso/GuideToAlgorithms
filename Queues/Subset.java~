@@ -1,14 +1,18 @@
 public class Subset {
   public static void main(String[] args) {
-    RandomizedQueue<String> memory = new RandomizedQueue<String>;
+    RandomizedQueue<String> memory = new RandomizedQueue<String>();
     int k = Integer.parseInt(args[0]);
     String item;
+    String copy = null;
     while (!StdIn.isEmpty()) {
       item = StdIn.readString();
       memory.enqueue(item);
+      if(memory.size() == k)
+        copy = memory.dequeue();
     }
-    for(int i = 0; i < k
-      
-    
+    if (copy != null && memory.size() < k)
+      memory.enqueue(copy);
+    for(int i = 0; i < k && !memory.isEmpty(); i++)
+      StdOut.println(memory.dequeue());
   }
 }
