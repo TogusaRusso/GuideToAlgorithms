@@ -10,9 +10,28 @@ public class Deque<Item> implements Iterable<Item> {
   
   // inner class for linked list creation
   private class Node {
-    Item item;
-    Node next;
-    Node prev;
+    private Item item;
+    private Node next;
+    private Node prev;
+    
+    public void setItem(Item input) {
+      this.item = input;
+    }
+    public void setNext(Node node) {
+      this.next = node;
+    }
+    public void setPrev(Node node) {
+      this.prev = node;
+    }
+    public Item getItem() {
+      return this.item;
+    }
+    public Node getNext() {
+      return this.next;
+    }
+    public Node getPrev() {
+      return this.prev;
+    }
   }
     
   // is the deque empty?
@@ -31,11 +50,11 @@ public class Deque<Item> implements Iterable<Item> {
       throw new java.lang.NullPointerException();
     Node oldfirst = first;
     first = new Node();
-    first.next = oldfirst;
-    first.prev = null;
-    first.item = item;
+    first.setNext(oldfirst);
+    first.setPrev(null);
+    first.setItem(item);
     if (N > 0)
-      oldfirst.prev = first;
+      oldfirst.setPrev(first);
     else
       last = first;
     N++;
@@ -47,11 +66,11 @@ public class Deque<Item> implements Iterable<Item> {
       throw new java.lang.NullPointerException();
     Node oldlast = last;
     last = new Node();
-    last.prev = oldlast;
-    last.next = null;
-    last.item = item;
+    last.setPrev(oldlast);
+    last.setNext(null);
+    last.setItem(item);
     if (N > 0)
-      oldlast.next = last;
+      oldlast.setNext(last);
     else
       first = last;
     N++;
@@ -61,14 +80,14 @@ public class Deque<Item> implements Iterable<Item> {
   public Item removeFirst() {
     if (N == 0)
       throw new java.util.NoSuchElementException();
-    Item item = first.item;
+    Item item = first.getItem();
     if (--N == 0) {
       first = null;
       last = null;
     }
     else {
-      first = first.next;
-      first.prev = null;
+      first = first.getNext();
+      first.setPrev(null);
     }
     return item;
   }
@@ -77,14 +96,14 @@ public class Deque<Item> implements Iterable<Item> {
   public Item removeLast() {
     if (N == 0)
       throw new java.util.NoSuchElementException();
-    Item item = last.item;
+    Item item = last.getItem();
     if (--N == 0) {
       first = null;
       last = null;
     }
     else {
-      last = last.prev;
-      last.next = null;
+      last = last.getPrev();
+      last.setNext(null);
     }
     return item;
   }
@@ -109,8 +128,8 @@ public class Deque<Item> implements Iterable<Item> {
       if (!hasNext()) {
         throw new NoSuchElementException("No more elements in Deque");
       }
-      Item item = current.item;
-      current = current.next;
+      Item item = current.getItem();
+      current = current.getNext();
       return item;
     }
   }

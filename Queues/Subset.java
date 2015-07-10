@@ -17,7 +17,7 @@ public class Subset {
           memory.enqueue(item);
         }
     }
-    for(int i = 0; i < k && !memory.isEmpty(); i++)
+    for (int i = 0; i < k && !memory.isEmpty(); i++)
       StdOut.println(memory.dequeue());
   }
 }
