@@ -1,7 +1,6 @@
 public class MergeBU {
   
   private static Comparable[] aux;
-  private static int counter = 0;
   
   private static void merge(Comparable[] a, int lo, int mid, int hi) {
     //assert isSorted(a, lo, mid);
@@ -34,31 +33,9 @@ public class MergeBU {
     int N = a.length;
     aux = new Comparable[N];
     for (int sz = 1; sz < N; sz = sz + sz)
-      for (int lo = 0; lo < N - sz; lo += sz + sz) {       
+      for (int lo = 0; lo < N - sz; lo += sz + sz)
         merge(a, lo, lo + sz - 1, Math.min(lo + sz + sz - 1, N - 1));
-        counter++;
-        printArray(a);
-      }
   }
-
-  private static <T extends Comparable<T>> void printArray(T[] a) {
-    String out = "";
-    for (int i = 0; i < a.length; i++)
-      out += a[i] + " ";
-    StdOut.println(counter + ": [" + out + "]");
-  }
-
-  public static void main(String[] args)    // test client (described below)
-  {
-    
-    //String[] a = {"lifo", "list", "tree", "heap", "java", "fifo", "swim", "leaf", "flip", "load", "flow", "time"};
-    Integer[] a = {52, 95, 75, 10, 81, 55, 83, 69, 61, 76};
-    //35 22 42 70 66 26 43 23 56 62 80 60
-    MergeBU.printArray(a);
-    MergeBU.sort(a);
-     
-  }
-
 }
     
     
