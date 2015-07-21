@@ -1,0 +1,20 @@
+public class Ball {
+  private double       rx, ry; // position
+  private double       vx, vy; // velocity
+  private final double radius; // radius
+  public Ball() {
+  }
+  
+  public void move(double dt) {
+    //check collisions with walls
+    if ((rx + vx * dt < raduis) || (rx + vx * dt > 1.0 - raduis)) { vx = - vx; }
+    if ((ry + vy * dt < raduis) || (ry + vy * dt > 1.0 - raduis)) { vy = - vy; }
+    rx += vx * dt;
+    ry += vy * dt;
+  }
+  
+  public void draw() {   
+    StdDraw.filledCircle(rx, ry, radius);
+  }
+}
+    

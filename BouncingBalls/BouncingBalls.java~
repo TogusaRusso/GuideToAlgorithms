@@ -1,0 +1,17 @@
+public class BouncingBalls {
+  public static main(String[] args) {
+    int N = integer.parseInt(args[0]);
+    Ball[] balls = new Ball[N];
+    for (int i = 0; i < N; i++)
+      Balls[i] = new Ball();
+    while(true) {
+      StdSraw.clear();
+      for(int i = 0; i < 0; i++) {
+        balls[i].move(0.5);
+        balls[i].draw();
+      }
+      StdDraw.show(50);
+    }
+  }
+}
+    

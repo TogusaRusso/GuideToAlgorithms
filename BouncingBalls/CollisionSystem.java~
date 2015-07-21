@@ -1,0 +1,23 @@
+public class CollisionSystem {
+  private MinPQ<event> pq;
+  private double t = 0.0;
+  private Particle[] particles;
+  
+  public CollisionSystem(Particle[] particles) {}
+  
+  private void predict(Particle a) {
+    if (a == null) return;
+    for (int  i = 0; i < N; i++) {
+      double dt = a.timeToHit(particles[i]);
+      pq.insert(new Event(t + dt, a, particles[i]));
+    }
+    pq.insert(new Event(t + a.timeToHitVerticalWall(), a, null));
+    pq.insert(new Event(t + a.timeToHitHorizontalWall(), null, a));
+  }
+  
+  private void redraw() {}
+  
+  public void simulate {
+  }
+  
+}
