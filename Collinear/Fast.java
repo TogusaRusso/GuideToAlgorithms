@@ -34,17 +34,19 @@ public class Fast {
       double currentSlope = points[p].slopeTo(aux[0]);
       int counter = 1;
       for (int i = 1; i < N; i++)
-        if(currentSlope == points[p].slopeTo(aux[i]))
+        if (currentSlope == points[p].slopeTo(aux[i]))
           counter++;
         else {
           if (counter > 2) {
             String result = points[p].toString();
             boolean flag = true;
-            for(int j = i - counter; j < i; j++)
+            for (int j = i - counter; j < i; j++)
               if (points[p].compareTo(aux[j]) < 0)
                 result += " -> " + aux[j].toString();
-              else 
-                flag = false;
+              else {
+                flag = false; 
+                break;
+              }
             
             if (flag) {
               StdOut.println(result);
@@ -57,11 +59,13 @@ public class Fast {
         if (counter > 2) {
           String result = points[p].toString();
           boolean flag = true;
-          for(int j = N - counter; j < N; j++)
+          for (int j = N - counter; j < N; j++)
             if (points[p].compareTo(aux[j]) < 0)
               result += " -> " + aux[j].toString();
-            else
+            else {
               flag = false;
+              break;
+            }
           if (flag) {
             StdOut.println(result);
             points[p].drawTo(aux[N - 1]);
