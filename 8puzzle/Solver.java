@@ -54,7 +54,7 @@ public class Solver {
 
     MinPQ<SearchNode> pq = new MinPQ<SearchNode>();
     
-    pq.insert(new SearchNode(initial,        0, null, true ));
+    pq.insert(new SearchNode(initial,        0, null, true));
     pq.insert(new SearchNode(initial.twin(), 0, null, false));
     while (true) {
       current = pq.delMin();
