@@ -1,0 +1,22 @@
+public class ST <Key extends Comparable<Key>, Value> {
+                ST() {}
+           void put(Key key, Value val) {}
+          Value get(Key key) {}
+           void delete(Key key) { put(key, null); }
+        boolean contains(Key key) { return get(key) != null; }
+        boolean isEmpty() {}
+            int size() {}
+            Key min() {}
+            Key max() {}
+            Key floor(Key key) {}
+            Key ceiling(Key key) {}
+            int rank(Key key) {}
+            Key select(int k) {}
+           void deleteMin() {}
+           void deleteMax() {}
+            int size(Key lo, Key hi) {}
+  Iterable<Key> keys(Key lo, Key hi) {}
+  Iterable<Key> keys() {}
+}
+    
+  

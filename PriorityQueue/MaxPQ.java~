@@ -50,38 +50,5 @@ public class MaxPQ <Key extends Comparable<Key>> {
   private boolean less(int i, int  j) {
     return  pq[i].compareTo(pq[j]) < 0;
   }
-  
-  private void print() {
-    String out = "";
-    for (int i = 1; i <= N; i++)
-      out += pq[i] + " ";
-    StdOut.println("[" + out + "]");
-  }
-
-  public static void main(String[] args)    // test client (described below)
-  {
-    Integer[] a = {93, 60, 67, 41, 29, 34, 47, 25, 35, 20};
-    MaxPQ<Integer> pq = new MaxPQ<Integer>(20);
-    for (int k : a) {
-      pq.insert(k);
-    }
-    pq.print();
-    pq.insert(94);
-    pq.insert(97);
-    pq.insert(74);
-    pq.print();
-    
-    Integer[] b= {95, 93, 74, 70, 49, 55, 64, 17, 32, 41};
-    MaxPQ<Integer> pq2 = new MaxPQ<Integer>(20);
-    for (int k : b) {
-      pq2.insert(k);
-    }
-    pq2.print();
-    pq2.delMax();
-    pq2.delMax();
-    pq2.delMax();
-    pq2.print();
-  }
-
 }
   

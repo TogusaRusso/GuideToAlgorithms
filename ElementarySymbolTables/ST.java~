@@ -1,0 +1,12 @@
+public class ST <Key, Value> {
+  ST() {}
+  void put(Key key, Value val) {}
+  Value get(Key key) {}
+  void delete(Key key) {}
+  boolean contains(Key key) {}
+  boolean isEmpty() {}
+  int size() {}
+  Iterable<key> keys() {}
+}
+    
+  
