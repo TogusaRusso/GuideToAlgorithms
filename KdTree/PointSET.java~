@@ -1,0 +1,60 @@
+public class PointSET {
+  
+   private ResizingArrayStack<Point2D> points;
+   
+   // construct an empty set of points public         
+   PointSET() {
+     points = new ResizingArrayStack<Point2D>(); 
+   }
+   
+   // is the set empty? 
+   public boolean isEmpty() {
+     return points.isEmpty();
+   }
+   
+   // number of points in the set 
+   public int size() {
+     return points.size();
+   }
+   
+   // add the point to the set (if it is not already in the set)
+   public void insert(Point2D p) {
+     points.push(p);
+   }
+   
+   // does the set contain point p? 
+   public boolean contains(Point2D p) {
+     for (Point2D point : points.iterator())
+       if (point.equals(p)) { return True; }
+     return False;
+   }
+   
+   // draw all points to standard draw 
+   public void draw() {
+     for (Point2D point : points.iterator())
+       point.draw();
+   }
+   
+   // all points that are inside the rectangle 
+   public Iterable<Point2D> range(RectHV rect) {
+     ResizingArrayStack<Point2D> inside = new ResizingArrayStack<Point2D>();
+     for (Point2D point : points.iterator())
+       if (rect.contains(point)) { inside.push(point); }
+     return inside.iterator();
+   }
+
+   // a nearest neighbor in the set to point p; null if the set is empty 
+   public Point2D nearest(Point2D p) {
+     Point2D nearest = null;
+     double minDistance = Double.POSITIVE_INFINITY;
+     for (Point2D point : points.iterator())
+       if (p.distanceSquaredTo(points) < minDistance) {
+         nearest = point; minDistance = p.distanceSquaredTo(points);
+     }
+     return nearest;
+   }
+   
+   // unit testing of the methods (optional) 
+   public static void main(String[] args) {
+   }
+}
