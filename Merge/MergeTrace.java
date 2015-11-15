@@ -70,8 +70,7 @@ public class MergeTrace {
   public static void main(String[] args)    // test client (described below)
   {
     //String[] a = {"lifo", "list", "tree", "heap", "java", "fifo", "swim", "leaf", "flip", "load", "flow", "time"};
-    Integer[] a = {38, 95, 61, 98, 88, 24, 13, 56, 29, 66, 93, 34};
-     //35 22 42 70 66 26 43 23 56 62 80 60
+    String[] a = {"mint", "ceil", "lime", "palm", "bole", "rust", "jade", "flax", "onyx", "bone", "bark", "pine", "pink", "silk", "buff", "coal", "puce", "iris", "drab", "gray", "kobi", "aqua", "corn", "fawn"};
      MergeTrace.printArray(a);
      MergeTrace.sort(a);
      

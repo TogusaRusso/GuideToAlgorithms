@@ -65,6 +65,23 @@ public class Quicksort {
   private static <T extends Comparable<T>> boolean less(T v, T  w) {
     return  v.compareTo(w) < 0;
   }
+
+  private static <T extends Comparable<T>> void printArray(T[] a) {
+    String out = "";
+    for (int i = 0; i < a.length; i++)
+      out += a[i] + " ";
+    StdOut.println("[" + out + "]");
+  }
+
+  public static void main(String[] args)    // test client (described below)
+  {
+    Integer[] a = {70, 21, 96, 44, 30, 17, 24, 99, 80, 47, 86, 37};
+    printArray(a);
+    partition(a, 0, a.length - 1);
+    printArray(a);
+     
+  }
+
 }
     
     

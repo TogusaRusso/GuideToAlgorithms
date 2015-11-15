@@ -1,5 +1,5 @@
 public class Quicksort {
-  private static final int CUTOFF = 10;
+  private static final int CUTOFF = 1;
   
   private static <T extends Comparable<T>> int partition(T[] a, int lo, int hi) {
     int i = lo, j = hi + 1;
@@ -17,13 +17,14 @@ public class Quicksort {
   }
   
   public static <T extends Comparable<T>> void sort(T[] a) {
-    StdRandom.shuffle(a);
+    //StdRandom.shuffle(a);
     sort(a, 0, a.length - 1);
     insertionSort(a, 0, a.length - 1); //insertion sort almost sorted array in one pass
   }
   
   private static <T extends Comparable<T>> void sort(T[] a, int lo, int hi) {
     if (hi < lo + CUTOFF) return; //don't use qucksort for small arrays
+    printArray(a);
 
     int m = medianOf3(a, lo, lo + (hi - lo) / 2, hi);
     exch(a, lo, m);
@@ -75,9 +76,9 @@ public class Quicksort {
 
   public static void main(String[] args)    // test client (described below)
   {
-    Integer[] a = {70, 21, 96, 44, 30, 17, 24, 99, 80, 47, 86, 37};
+    String[] a = {"mint", "ceil", "lime", "palm", "bole", "rust", "jade", "flax", "onyx", "bone", "bark", "pine", "pink", "silk", "buff", "coal", "puce", "iris", "drab", "gray", "kobi", "aqua", "corn", "fawn"};
     printArray(a);
-    partition(a, 0, a.length - 1);
+    sort(a);
     printArray(a);
      
   }

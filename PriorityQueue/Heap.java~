@@ -10,7 +10,7 @@ public class Heap {
     }
   }
   
-  private void sink(Comparable[] pq, int k, int N) {
+  private static void sink(Comparable[] pq, int k, int N) {
     while (2 * k <= N) {
       int j = 2 * k;
       if (j < N && less(pq, j, j + 1)) j++;
@@ -20,13 +20,13 @@ public class Heap {
     }
   }
 
-  private void exch(Comparable[] pq, int i, int j) {
-    Key swap = pq[i];
+  private static void exch(Comparable[] pq, int i, int j) {
+    Comparable swap = pq[i];
     pq[i] = pq[j];
     pq[j] = swap;
   }
 
-  private boolean less(Comparable[] pq, int i, int  j) {
+  private static boolean less(Comparable[] pq, int i, int  j) {
     return  pq[i].compareTo(pq[j]) < 0;
   }
 }
