@@ -27,6 +27,8 @@ public class SAP {
     changed = new SET<Integer>();
     vOld = new SET<Integer>();
     wOld = new SET<Integer>();
+    ancestor = -1;
+    length = -1;
   }
 
    // length of shortest ancestral path between v and w; -1 if no such path
@@ -109,7 +111,7 @@ public class SAP {
     }
     while (!q.isEmpty()) {
       int v = q.dequeue();
-      if (length > -1 && distToV[v] + distToW[v] > length)
+      if (length > -1 && (distToV[v]  > length || distToW[v] > length))
           continue;
       if (distToV[v] > -1 && distToW[v] > -1) {
           if (distToV[v] + distToW[v] < length || length == -1) {
